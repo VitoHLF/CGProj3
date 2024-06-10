@@ -59,24 +59,37 @@
 <body>
     <video id="webcam" autoplay playsinline></video>
     <a-scene vr-mode-ui="enabled: false">
-        <a-camera></a-camera>
+        <a-camera position="0 1 0" id="myCamera">
+            <a-cursor intersection-spawn="Event: click; mixin:voxel"></a-cursor>
+
+        </a-camera>
         <a-assets>
             <a-asset-item id="plant-obj" src="./models/IndoorPotPlant/indoor plant_02.obj"></a-asset-item>
-            <a-asset-item id="plant-mtl" src="./models/IndoorPotPlant/indoor plant_02.mtl"></a-asset-item>     
-            
+            <a-asset-item id="plant-mtl" src="./models/IndoorPotPlant/indoor plant_02.mtl"></a-asset-item>
+
             <a-assets-item id="casa-obj" src="./models/ConjuntoCasaMesa/Casa Simples/Barracao1.obj"></a-assets-item>
             <a-assets-item id="casa-mtl" src="./models/ConjuntoCasaMesa/Casa Simples/Barracao1.mtl"></a-assets-item>
         </a-assets>
         <!--<a-entity obj-model="obj: #plant-obj; mtl: #plant-mtl" scale="0.1 0.1 0.1" position="0 0 -1"></a-entity>-->
         <!--<a-entity obj-model="obj: #plant-obj; mtl: #plant-mtl" position="0 -2 -3" scale="0.5 0.5 0.5"></a-entity>-->
-            <a-entity obj-model="obj: #casa-obj; mtl: #casa-mtl" position="4 -1.6 0"></a-entity>
+        <a-entity obj-model="obj: #casa-obj; mtl: #casa-mtl" position="4 -1.6 0"></a-entity>
 
-        <a-entity camera look-controls>
+        <!-- <a-entity camera look-controls>
             <a-entity cursor="fuse: true; fuseTimeout: 500" position="0 0 -0.6"
                 geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03" material="color: blue; shader: flat">
             </a-entity>
-        </a-entity>
-        <a-box  scale="1.2 1.2 1.2" color="#FFFFFF" position="0 2 -4" rotation="0 0 0" material="
+        </a-entity> -->
+        <a-entity   text="value: CLIQUE AQUI;
+                          color: black;
+                          align: center"
+                    scale="5 5 5"
+                    position="0 2 -3"></a-entity>
+        <a-box  foo
+                scale="1.2 1.2 1.2" 
+                color="#FFFFFF" 
+                position="0 2 -4"
+                rotation="0 0 0"
+                material="
                 color: #FFFFFF;
                 roughness: 1;
                 metalness: 0.1;" animation="
@@ -88,7 +101,7 @@
                 easing: linear">
         </a-box>
         <!--<a-sky color="#000000"></a-sky>-->
-        
+
         <a-light type="point" color="#F00" intensity="0.5" position="-2 -1 -5">
         </a-light>
         <a-light type="point" color="#0F0" intensity="0.5" position="0 5 -3">
@@ -118,6 +131,13 @@
         </a-entity>
     </a-scene>
     <script>
+        AFRAME.registerComponent('foo', {
+            init: function () {
+                this.el.addEventListener('click', (e) => {
+                    window.open('https://github.com/VitoHLF/CGProj3');
+                })
+            }
+        })
         /*  const scene = document.querySelector("a-scene");
          const cylinder = document.createElement("a-cylinder");
          cylinder.setAttribute("color", "#FF9500");
